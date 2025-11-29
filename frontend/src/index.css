@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 148 98% 51%;
+
+    --card: 0 0% 0%;
+    --card-foreground: 148 98% 51%;
+
+    --popover: 0 0% 0%;
+    --popover-foreground: 148 98% 51%;
+
+    --primary: 148 98% 51%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 0%;
+    --secondary-foreground: 148 98% 51%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 148 98% 40%;
+
+    --accent: 148 98% 51%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 0%;
+
+    --border: 148 98% 51%;
+    --input: 148 98% 51%;
+    --ring: 148 98% 51%;
+
+    --radius: 0rem;
+
+    --sidebar-background: 148 98% 51%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 148 98% 51%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 148 98% 45%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 148 98% 51%;
+    --sidebar-ring: 148 98% 51%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    font-family: 'Liberation Mono', 'Courier New', monospace;
+  }
+}
+
+@layer utilities {
+  /* Risk-level color utilities for consistency across the dashboard */
+  .risk-low {
+    @apply text-green-500;
+  }
+
+  .risk-medium {
+    @apply text-yellow-500;
+  }
+
+  .risk-high {
+    @apply text-red-500;
+  }
+
+  .badge-low {
+    @apply bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold;
+  }
+
+  .badge-medium {
+    @apply bg-yellow-500 text-black px-3 py-1 rounded-full text-sm font-semibold;
+  }
+
+  .badge-high {
+    @apply bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold;
+  }
+}
+
