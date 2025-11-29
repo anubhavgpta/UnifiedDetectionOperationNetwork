@@ -98,12 +98,6 @@ python app.py
 npm run dev
 ```
 
-### Full System with Docker
-
-```
-docker-compose up --build
-```
-
 This will start the backend, the frontend, and any supporting services such as Redis.
 
 ---
@@ -200,22 +194,3 @@ pytest tests/
 Tests include API validation, model inference checks, and preprocessing unit tests.
 
 ---
-
-## Development Workflow
-
-Use the following branching model:
-
-* `main` – stable, production-ready version
-* `dev` – active development
-* `feature/*` – feature-specific branches
-* `bugfix/*` – fixes for identified issues
-
-Commit messages should follow a clear format, such as:
-
-```
-feat: add risk scoring endpoint
-fix: restore search functionality in logs page
-docs: update architecture documentation
-refactor: simplify model loading logic
-```
-Just tell me what type you want.
