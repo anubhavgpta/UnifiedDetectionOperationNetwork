@@ -13,6 +13,7 @@ from app.utils.logger import SystemLogger
 from app.capture.packetParser import parsePacket
 from typing import List, Dict
 import threading
+from collections import deque
 
 
 class PacketSniffer:
@@ -25,7 +26,7 @@ class PacketSniffer:
         # Sequential ID generator to maintain continuous packet IDs
         self.idGenerator = PacketIDGenerator()
         # Thread-safe list to store captured packet metadata
-        self.capturedPackets: List[Dict] = []
+        self.capturedPackets = deque(maxlen=10000)
         # Internal flag to control capture session state
         self.isCapturing: bool = False
         # Thread handle for live capture
@@ -100,7 +101,7 @@ class PacketSniffer:
         Returns the most recently captured packets up to the specified limit.
         This data will be delivered to the frontend for visualization.
         """
-        return self.capturedPackets[-limit:]
+        return list(self.capturedPackets)[-limit:]
 
     def resetCapture(self) -> None:
         """
