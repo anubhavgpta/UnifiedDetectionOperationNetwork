@@ -5,11 +5,25 @@ Connects the PacketSniffer backend engine with REST endpoints.
 Provides APIs to start, stop, retrieve, and reset live packet capture sessions.
 """
 
-from fastapi import APIRouter
+import os
+from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import APIKeyHeader
 from app.capture.packetSniffer import PacketSniffer
 
+API_KEY_NAME = "X-API-Key"
+api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=True)
+
+def verify_api_key(api_key: str = Depends(api_key_header)):
+    expected_api_key = os.getenv("API_KEY", "default-secret-key")
+    if api_key != expected_api_key:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or missing API Key",
+        )
+    return api_key
+
 # Initialize router and packet sniffer instance
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(verify_api_key)])
 sniffer = PacketSniffer()
 
 
